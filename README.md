@@ -227,15 +227,11 @@ Every message, call, and request helped define the system.
 ## 📌 Note
 
 This system is currently restricted to authorized users (CSE-A & CSE-B).  
+
 External users cannot log in.
 
 ---
----
 
-## 📄 License
-
-© 2026 CampusPrint4U. All Rights Reserved.
-Unauthorized reproduction or distribution is strictly prohibited under the Copyright Act, 1957.
 ## 💬 Final Thought
 
 Your real-life frustration can become your best project idea.
@@ -244,3 +240,8 @@ I started with 15 printouts.
 I ended up building a production system.
 
 ---
+
+## 📄 License
+
+© 2026 CampusPrint4U. All Rights Reserved.
+Unauthorized reproduction or distribution is strictly prohibited under the Copyright Act, 1957.
