@@ -243,5 +243,5 @@ I ended up building a production system.
 
 ## 📄 License
 
-© 2026 CampusPrint4U. All Rights Reserved.
+© 2026 Nesprnt student Print Mediator. All Rights Reserved.
 Unauthorized reproduction or distribution is strictly prohibited under the Copyright Act, 1957.
