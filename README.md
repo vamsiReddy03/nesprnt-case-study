@@ -230,7 +230,12 @@ This system is currently restricted to authorized users (CSE-A & CSE-B).
 External users cannot log in.
 
 ---
+---
 
+## 📄 License
+
+© 2026 CampusPrint4U. All Rights Reserved.
+Unauthorized reproduction or distribution is strictly prohibited under the Copyright Act, 1957.
 ## 💬 Final Thought
 
 Your real-life frustration can become your best project idea.
