@@ -37,7 +37,15 @@ More users → more PDFs → more confusion
 Reduced involvement due to overload  
 
 **4th Semester:**  
-Same problem returned — larger than before  
+
+ — Lab submissions are BACK!
+   Same chaos approaching again...
+        ↓
+   This time I thought:
+   "Wait — 
+   If I build a Moblie Web App for this
+   ALL these problems will be solved!"
+  
 ---
 ## 💡 The Realization
 
