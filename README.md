@@ -340,7 +340,6 @@ A complete workflow automation system:
 - Backend migration (Node.js,Express backend + JWT)
 - AI-based automation (n8n workflows)
 - Mobile app (React Native)
-- Multi-college scaling
 
 ---
 
@@ -360,7 +359,7 @@ Every message, call, and request helped define the system.
 
 ## 📌 Note
 
-This system is currently restricted to authorized users (CSE-A & CSE-B).  
+This system is currently restricted to authorized users.  
 
 External users cannot log in.
 
