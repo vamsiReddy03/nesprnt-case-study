@@ -336,6 +336,7 @@ A complete workflow automation system:
 - Backend migration (Node.js,Express backend + JWT)
 - AI-based automation (n8n workflows)
 - Mobile app (React Native)
+- multi colleges (SaaS Model)
 
 ---
 
