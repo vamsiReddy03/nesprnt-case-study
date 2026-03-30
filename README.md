@@ -372,5 +372,32 @@ I ended up building a production system.
 
 ## 📄 License
 
-© 2026 Nesprnt student Print Mediator. All Rights Reserved.
-Unauthorized reproduction or distribution is strictly prohibited under the Copyright Act, 1957.
+Nesprnt Student Print Mediator License
+Copyright (c) 2026 Vamsi Reddy
+
+All Rights Reserved.
+
+This project, including its source code, documentation, design, and associated materials,
+is the intellectual property of the author.
+
+Permission is granted to:
+- View and read the code and documentation for educational and evaluation purposes
+- Fork the repository for personal, non-commercial use
+- Share the repository link with proper attribution
+
+The following are strictly prohibited without prior written permission from the author:
+- Reproducing, copying, or redistributing the project in whole or in part
+- Using the project or its code for commercial purposes
+- Deploying, hosting, or offering this system as a service
+- Creating derivative works intended for public or commercial use
+
+This project is published as a case study and portfolio work to demonstrate
+problem-solving, system design, and real-world application development.
+
+For permissions, contact:
+[vamsireddygnt11@gmail.com]
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE,
+AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY CLAIM, DAMAGES,
+OR OTHER LIABILITY ARISING FROM THE USE OF THIS SOFTWARE.
