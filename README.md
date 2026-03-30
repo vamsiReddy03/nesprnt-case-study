@@ -1,20 +1,25 @@
 # nesprnt-case-study
+
 # 🖨️ Nesprnt — From WhatsApp Chaos to a 90+ Feature Production System
+
 ## 🚀 Overview
-Nesprnt is a production-ready web application built to automate campus print workflows by replacing unstructured WhatsApp-based coordination with a structured, scalable system.
+
 This project was built in my **4th semester**, solving a real problem I personally experienced over multiple semesters.
-> In an era dominated by AI agents and LLMs, this project focuses on solving a real-world **last-mile problem in campus logistics**.
+
+> In an era dominated by AI agents and LLMs ,I chose to solve a small real-world problem that grew bigger than I expected." — one I lived through for multiple       semesters and I decided to solve it myself. The solution I built ended up having a bigger impact than I initially imagined."
+  this project focuses on solving a real-world **last-mile problem**
+
 ---
+
 ## 😤 The Problem
-Every semester, students are required to submit printed and bound lab reports.
-As a **day scholar**, I became the “print mediator” for my classmates.
-- Hostelers avoided expensive campus print shops  
-- They sent PDFs via WhatsApp  
-- I printed them from a shop near my home  
+
+Every semester, exam season meant one thing — 10 to 20 students sending me PDFs on WhatsApp to coordinate printing.
 Initially manageable, the process quickly became chaotic.
+
 ---
 ## 🟡 The Chaos
-At peak times, I handled **30–40 print requests simultaneously**.
+What looked like "just one printout" per person quickly turned into a overwhelming mess I couldn't handle alone..
+
 At the print shop, I had to:
 - Manage multiple PDFs  
 - Count pages manually  
@@ -35,23 +40,18 @@ More users → more PDFs → more confusion
 
 **3rd Semester:**  
 Reduced involvement due to overload  
-
-**4th Semester:**  
-
- — Lab submissions are BACK!
-   Same chaos approaching again...
-        ↓
-   This time I thought:
-   "Wait — 
-   If I build a Moblie Web App for this
-   ALL these problems will be solved!"
   
 ---
 ## 💡 The Realization
 
-> This is not a printing problem.  
-> This is a **system design problem**.
+> This is not a printing problem. This is a **system design problem**.
+
 ---
+
+**4th Semester:** 
+Same chaos heading my way again. I asked:
+"What if I build a Mobile Web App to make this disappear entirely?"
+🚀 So I built Nesprnt 
 
 ## 🚀 The Solution — Nesprnt
 
@@ -78,121 +78,247 @@ A complete workflow automation system:
 
 ---
 
-## ⚙️ Features (90+)
+** Features (90+)
 
-### 📄 PDF Management
+**🔑 Student Login & Access Control**
+
+- College email login page before website access
+- Amrita email format validation 
+- Roll number extracted from email → verified against Supabase `students` table
+- Login saved permanently on device via localStorage
+- Outsiders with any other email → completely blocked
+- Mobile keyboard auto-suggests email (`type="email"`, `autocomplete="email"`)
+- Enter key triggers login directly
+- Terms line — "By using Nesprnt, you agree to pay the fixed rate"
+- RLS policy — student list never exposed to browser
+- Returns only `ok: true/false` — never actual student data
+
+---
+
+**📄 PDF Management**
+
 - Upload up to 5 PDFs (max 30MB)
-- Auto page detection
-- Thumbnail preview
-- Duplicate detection
-- Corrupted/password-protected PDF blocking
-- Per-PDF customization
+- Auto page detection via PDF.js
+- Thumbnail preview per PDF
+- Duplicate PDF detection
+- Corrupted PDF blocking
+- Password-protected PDF blocking
+- Per-PDF customization (sides + binding)
+- PDF count badge display
+- Remove individual PDF button
+- Page alert when no PDFs uploaded
 
 ---
 
-### ⚙️ Print Customization
-- Single / Double sided
-- First page single, rest double
-- Pin binding (free)
+**⚙️ Print Customization**
+
+- All single sided , All double sided
+- 1st single, rest double
+- Pins binding (free)
 - Spiral binding (+₹25)
-- Live sheet calculation
+- Live sheet calculation per PDF
+- Per-PDF sides and binding description update
 
 ---
 
-### 💰 Pricing Engine
-- ₹1.50 per B&W sheet
-- ₹8 per color sheet
+**💰 Pricing Engine**
+
+- B&W ₹1.50/sheet
+- Colour ₹8.00/sheet
 - Per-PDF price breakdown
-- Automatic total calculation
+- Spiral binding auto charge
+- Live total update
+- Live sheet count update
+- Price summary display with breakdown
 
 ---
 
-### 📱 Payment Flow
-- UPI display + copy
-- “I Have Paid” confirmation
-- Order ID generation
-- Step-by-step UI flow
+**📱 Payment Flow**
+
+- UPI phone number display
+- UPI copy button with confirmation
+- "I Have Paid" confirmation button
+- Payer name field
+- Payer phone number field
+- Order ID auto generation (`PD` + timestamp)
+- Progressive step reveal (Step 1 → 2 → 3 → 4)
+- Payment pulse animation
+- Step progress bar sync
 
 ---
 
-### 🔍 Order Tracking
-- Real-time status updates
-- Timeline view
-- Student verification
+**🔍 Order Tracking**
+
+- Real-time status fetch from Supabase
+- Timeline view (Pending → Verified → Printed)
+- Student ID verification before showing order
+- Order not found error handling
+- Student ID mismatch error handling
+- Verified at timestamp display
+- Printed at timestamp display
 
 ---
 
-### 📦 My Orders
-- Live order tracking
-- Cancel before verification
-- Delete cancelled orders
-- Refund via WhatsApp
+**📦 My Orders**
+
+- Live status fetch from Supabase on open
+- Per-PDF details per order
+- Cancel order before verification
+- Confirm dialog before cancel
+- Delete cancelled orders from list
+- Refund request via WhatsApp to admin
+- Deleted/completed orders show "✅ Order Completed — Ready to Collect"
+- Orders saved on device (up to 20)
+- Shows order count on device
 
 ---
 
-### 🔐 Admin Panel
-- Order management dashboard
-- Payment verification
-- Bulk WhatsApp dispatch
-- Status filters
-- SMS notifications
-- Refund handling
-- Analytics dashboard
+**🔐 Admin Panel Access**
+
+- Email + password login form
+- Brute force lock — 30 sec after 5 wrong attempts
+- Lockout countdown message
+- Logout button
+- Admin nav button hidden from students
 
 ---
 
-### 🔑 Access Control
-- Restricted login (CSE-A & CSE-B only)
-- Email validation
-- Outsider access blocked
-- Persistent login session
+**📋 Admin Order Management**
+
+- Load all orders from Supabase
+- 5 status filters (All, Pending, Verified, Printed, Cancelled)
+- Order details modal (name, section, student ID, pages, amount, PDF files)
+- Per-PDF print instructions in detail view
+- Payment details box (phone, name, amount)
+- Verify order button
+- WhatsApp dispatch per order
+- Bulk WhatsApp dispatch (all verified orders + grand total)
+- Mark as printed button
+- SMS notify → turns green "✅ SMS Sent" after clicking
+- UPI number masked (`****12345`) in order list
+- Refund done button
+- Cancelled orders tab
+- Delete order (with PDF file cleanup from storage)
+- Stats dashboard (total, pending, verified, printed, cancelled, revenue)
+- Refresh button
 
 ---
 
-### 🔒 Security
-- Row Level Security (RLS)
+**📲 SMS & WhatsApp**
+
+- SMS Manual notify to student when order ready
+- WhatsApp message per order with full details
+- Bulk WhatsApp with all verified orders + grand total + B&W/colour/spiral counts
+- Refund SMS notification Manual to student
+- Cancel request via WhatsApp to admin
+
+---
+
+**⏰ Time Control**
+
+- Open/close timing set by admin
+- Supabase synced — works across all devices
+- Override button — force open/close outside hours
+- Closed banner shown to students when closed
+- Cutoff loaded on page load from backend
+- Cutoff saved to localStorage for offline check
+
+---
+
+**💬 Feedback System**
+
+- Star rating (1-5)
+- Category selection
+- Feedback message text area
+- Submit feedback to Supabase
+- Admin feedback management panel
+- Unread feedback badge on admin nav
+- Filter by all/unread/5-star/low rating
+- Mark individual feedback as read
+- Mark all as read
+- Delete feedback
+- Total feedback count display
+- Average rating display
+
+---
+
+**🔒 Security**
+
+- College email login — outsiders blocked
+- Backend rate limiting — max 3 orders/day (server-side, not bypassable)
 - SHA-256 password hashing
 - Salt encryption
-- XSS protection
-- Rate limiting
-- Brute force protection
+- XSS sanitization on all inputs (name, section, student ID, phone, payer name)
+- Brute force lock — 30 sec cooldown after 5 wrong admin attempts
+- RLS policies on all 4 database tables
+- CSP headers
 - HTTPS only
-- Signed URL expiry
+- Signed PDF URLs expire in 1 hour
+- All secrets in Supabase environment — never in browser
+- Student data returns only `ok: true/false` — never actual list
+- SQL injection safe — regex validation + parameterized queries + string comparison for admin
+- No duplicate IDs in HTML
+- Admin button hidden (`display:none`) from students
+- Admin tap/key combo only works outside input fields
+- `skipEmail` bypass removed
+- Secret URL `?admin=password` removed
 
 ---
 
-## 🧪 Testing
+**🌐 SEO & Google**
 
-Tested with real users (classmates):
-
-- End-to-end order flow  
-- Payment confirmation  
-- PDF handling  
-- Admin operations  
-- Mobile responsiveness  
-
-### ✅ Results
-
-- 90+ features working  
-- Real orders processed  
-- Real UPI payments tested  
-- Smooth mobile performance  
-- Zero production bugs  
+- Title → `Nesprnt | The Official Student Print Mediator`
+- 'Nesprnt' is totally a Ghost Name
+- Meta description
+- Open Graph tags (`og:title`, `og:description`, `og:url`, `og:type`)
+- Software Application Schema markup with aggregate rating
+- Google site verification meta tag ✅
+- Google Search Console verified ✅
+- Sitemap submitted ✅
+- `robots` meta tag — index + follow
+- `author` meta tag
 
 ---
 
-## 📊 Project Stats
+**🔗 Brand & Identity**
 
-- ⚡ 90+ features  
-- 🔒 10+ security measures  
-- 🗄️ 4 database tables  
-- 📁 1 storage bucket  
-- 🧪 Real-world testing  
-- 🐛 0 bugs  
-- 💰 ₹0 hosting cost  
-- 📱 100% mobile responsive  
+- Instagram icon in footer → `nesprnt_`
+- LinkedIn icon in footer → your profile
+- Hover effects on social icons (orange for Instagram, blue for LinkedIn)
+- PWA meta tags (theme color `#e8410a`, Apple web app capable)
+- `manifest.json` with Nr logo
+- `icon-192.png` + `icon-512.png` — Nr brand icons
+- Footer copyright with auto-updating year
+- Copyright Act 1957 notice
 
 ---
+
+**⚙️ Edge Function (16 Actions)**
+
+---
+
+**🚀 Deployment & Infrastructure**
+
+- Vercel hosting
+- Custom `nesprnt.in` + `www.nesprnt.in` domain
+- GitHub → Vercel auto-deploy pipeline
+- Supabase Edge Function (Deno/TypeScript)
+- DNS fixed on GoDaddy
+- ₹0 hosting cost
+
+---
+
+**📊 Final Stats**
+
+- ⚡ 100+ features
+- 🔒 15+ security layers
+- 🗄️ 4 database tables with RLS
+- ⚙️ 16 Edge Function actions
+- 🧪 Live tested with real classmates
+- 🐛 Continuously bug fixed
+- 💰 ₹0 hosting cost
+- 📱 100% mobile responsive
+- 🌐 Live on Google — nesprnt.in 🎉
 
 ## 🛠️ Tech Stack
 
