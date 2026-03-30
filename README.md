@@ -258,17 +258,13 @@ A complete workflow automation system:
 - Student data returns only `ok: true/false` — never actual list
 - SQL injection safe — regex validation + parameterized queries + string comparison for admin
 - No duplicate IDs in HTML
-- Admin button hidden (`display:none`) from students
-- Admin tap/key combo only works outside input fields
-- `skipEmail` bypass removed
-- Secret URL `?admin=password` removed
 
 ---
 
 **🌐 SEO & Google**
 
 - Title → `Nesprnt | The Official Student Print Mediator`
-- 'Nesprnt' is totally a Ghost Name
+-'Nesprnt' is totally a Ghost Name
 - Meta description
 - Open Graph tags (`og:title`, `og:description`, `og:url`, `og:type`)
 - Software Application Schema markup with aggregate rating
