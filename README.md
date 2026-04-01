@@ -112,7 +112,7 @@ Pending → Verified → Printed → Completed
  - Used by real users in live scenarios
  - Reduced human dependency through automation
 
-** Features (90+) Workflow Automation 
+## Features (90+) Workflow Automation 
 
 **🔑 Student Login & Access Control**
 
