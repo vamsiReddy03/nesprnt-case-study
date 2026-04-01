@@ -105,12 +105,12 @@ Pending → Verified → Printed → Completed
 
 ---
 
-📊 Impact
-⏱ Reduced execution time from ~60 minutes → ~5 minutes
-📉 Eliminated manual coordination and follow-ups
-🔁 Converted a chaotic workflow into a repeatable system
-👥 Used by real users in live scenarios
-⚙️ Reduced human dependency through automation
+ Impact
+ Reduced execution time from ~60 minutes → ~5 minutes
+ Eliminated manual coordination and follow-ups
+ Converted a chaotic workflow into a repeatable system
+ Used by real users in live scenarios
+ Reduced human dependency through automation
 
 ** Features (90+) Workflow Automation 
 
