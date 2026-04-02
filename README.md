@@ -3,7 +3,7 @@
 > In an era dominated by AI agents and LLMs ,I chose to solve a small real-world problem that grew bigger than I expected." — one I lived through for multiple       semesters and I decided to solve it myself. The solution I built ended up having a bigger impact than I initially imagined."
   this project focuses on solving a real-world **last-mile problem**
 
-> 🚀 Overview
+## 🚀 Overview
 
 Nesprnt is a production-grade workflow automation system built to replace a chaotic, manual print coordination process used by multiple 
 students during exam cycles.
@@ -15,10 +15,9 @@ What started as a small coordination task quickly evolved into a high-volume ope
 ---
 
 ## The Problem
-Every semester during exams, I faced the same situation
- — 10–20 classmates sending PDFs on WhatsApp, asking me to handle their printouts. As a day scholar, I had to go to a nearby print shop, 
- sit there for nearly 60 minutes, manage multiple PDFs, calculate pages manually, 
- and coordinate everything in real time.
+Every semester during exams, I faced the same situation — 10–20 classmates sending PDFs on WhatsApp, asking me to handle their printouts.
+As a day scholar, I had to go to a nearby print shop, sit there for nearly 60 minutes, manage multiple PDFs, calculate pages manually, 
+and coordinate everything in real time.
 
 ## 🔁 The Journey
 - At first, it was manageable. Later 
