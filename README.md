@@ -1,4 +1,4 @@
-🖨️ Nesprnt — Workflow Automation System built from a real recurring problem I personally experienced over multiple semesters Case Study
+## 🖨️ Nesprnt — Workflow Automation System built from a real recurring problem I personally experienced over multiple semesters Case Study
 
 > In an era dominated by AI agents and LLMs ,I chose to solve a small real-world problem that grew bigger than I expected." — one I lived through for multiple       semesters and I decided to solve it myself. The solution I built ended up having a bigger impact than I initially imagined."
   this project focuses on solving a real-world **last-mile problem**
@@ -39,7 +39,7 @@ This isn't a printing problem. This is a system design problem.
 "What if I build a System to make this disappear entirely?"
 
 ## 🚀 So I built Workflow Automation System 
-- hat eliminates manual coordination entirely — transforming 
+- That eliminates manual coordination entirely — transforming 
 - it into a structured, automated workflow.
 
 ## Key Insight
@@ -72,8 +72,7 @@ A complete workflow automation system:
 - Storage: Secure PDF handling with signed URLs
 - Workflow Engine: Order lifecycle management
 - Automation Layer: Payment confirmation and notifications
-- Order Lifecycle:
-- Pending → Verified → Printed → Completed
+- Order Lifecycle: Pending → Verified → Printed → Completed
 
 ## 🔄 What Changed
 
