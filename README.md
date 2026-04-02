@@ -8,7 +8,7 @@
 Nesprnt is a production-grade workflow automation system built to replace a chaotic, manual print coordination process used by multiple 
 students during exam cycles.
 
-What started as a small coordination task quickly evolved into a high-volume operational problem.
+What started as a small coordination task quickly evolved into a high-volume operational problem 
 Instead of optimizing the manual process, 
 I eliminated it through system design and automation.
 
