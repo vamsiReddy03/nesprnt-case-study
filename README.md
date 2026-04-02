@@ -1,4 +1,5 @@
-## 🖨️ Nesprnt — Workflow Automation System built from a real recurring problem I personally experienced over multiple semesters Case Study
+## 🖨️ Nesprnt — Workflow Automation System built from a real recurring problem
+  I personally experienced over multiple semesters Case Study
 
 > In an era dominated by AI agents and LLMs ,I chose to solve a small real-world problem that grew bigger than I expected." — one I lived through for multiple       semesters and I decided to solve it myself. The solution I built ended up having a bigger impact than I initially imagined."
   this project focuses on solving a real-world **last-mile problem**
