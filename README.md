@@ -13,47 +13,33 @@ Instead of optimizing the manual process, I eliminated it through system design 
 
 ---
 
-## 😤 The Problem
+## The Problem
+Every semester during exams, I faced the same situation
+ — 10–20 classmates sending PDFs on WhatsApp, asking me to handle their printouts. As a day scholar, I had to go to a nearby print shop, 
+ sit there for nearly 60 minutes, manage multiple PDFs, calculate pages manually, and coordinate everything in real time.
 
-Every semester, exam season meant one thing — 10 to 20 students sending me PDFs on WhatsApp to coordinate printing.
-Initially manageable, the process quickly became chaotic.
-
----
-## 🟡 The Chaos
-What looked like "just one printout" per person quickly turned into a overwhelming mess I couldn't handle alone..
-
-At the print shop, I had to:
-- Manage multiple PDFs  
-- Count pages manually  
-- Calculate cost for each student  
-- Track payments manually  
-- Handle constant phone calls  
-- Deal with last-minute changes  
-
-👉 This turned into **complete operational chaos**
----
 ## 🔁 The Journey
+At first, it was manageable. Later 
+2nd time : Load exploded — more PDFs, more payments, more time taken
+3rd time : Started avoiding requests due to overload
 
-**1st time:**  
-Small scale — manageable  
+## 🟡 The Real Chaos
+What looked like "just one printout" per person quickly turned into a overwhelming mess I couldn't handle alone.
+• Managing multiple PDFs simultaneously
+• Manually counting pages and calculating costs
+• Handling constant calls: "Did my payment go through?"
+• Tracking payments with no system
+ Complete operational chaos.
 
-**2nd time:**  
-More users → more PDFs → more confusion  
-
-**3rd time:**  
-Reduced involvement due to overload  
-  
----
 ## 💡 The Realization
+This isn't a printing problem. This is a system design problem.
 
-> This is not a printing problem. This is a **system design problem**.
+4th time: Same chaos heading my way again. I asked:
+"What if I build a System to make this disappear entirely?"
 
----
-
-**4th time:** 
-Same chaos heading my way again. I asked:
-"What if I build a Mobile Web App to make this disappear entirely?"
-🚀 So I built Nesprnt 
+## 🚀 So I built Workflow Automation System 
+That eliminates manual coordination entirely — transforming 
+it into a structured, automated workflow.
 
 Key Insight
 
