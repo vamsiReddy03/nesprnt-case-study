@@ -65,16 +65,16 @@ A complete workflow automation system:
 
 ## ⚙️ System Architecture
 
--The system was designed as a state-driven workflow engine, not just a UI application.
+- The system was designed as a state-driven workflow engine, not just a UI application.
 
--Core Components:
--Frontend: Mobile-first interface for structured user input
--Backend: Supabase (PostgreSQL) for state and data management
--Storage: Secure PDF handling with signed URLs
--Workflow Engine: Order lifecycle management
--Automation Layer: Payment confirmation and notifications
--Order Lifecycle:
--Pending → Verified → Printed → Completed
+- Core Components:
+- Frontend: Mobile-first interface for structured user input
+- Backend: Supabase (PostgreSQL) for state and data management
+- Storage: Secure PDF handling with signed URLs
+- Workflow Engine: Order lifecycle management
+- Automation Layer: Payment confirmation and notifications
+- Order Lifecycle:
+- Pending → Verified → Printed → Completed
 
 ## 🔄 What Changed
 
