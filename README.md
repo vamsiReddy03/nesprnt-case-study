@@ -17,7 +17,8 @@ What started as a small coordination task quickly evolved into a high-volume ope
 ## The Problem
 Every semester during exams, I faced the same situation
  — 10–20 classmates sending PDFs on WhatsApp, asking me to handle their printouts. As a day scholar, I had to go to a nearby print shop, 
- sit there for nearly 60 minutes, manage multiple PDFs, calculate pages manually, and coordinate everything in real time.
+ sit there for nearly 60 minutes, manage multiple PDFs, calculate pages manually, 
+ and coordinate everything in real time.
 
 ## 🔁 The Journey
 - At first, it was manageable. Later 
@@ -26,11 +27,11 @@ Every semester during exams, I faced the same situation
 
 ## 🟡 The Real Chaos
 What looked like "just one printout" per person quickly turned into a overwhelming mess I couldn't handle alone.
-• Managing multiple PDFs simultaneously
-• Manually counting pages and calculating costs
-• Handling constant calls: "Did my payment go through?"
-• Tracking payments with no system
- Complete operational chaos.
+- Managing multiple PDFs simultaneously
+- Manually counting pages and calculating costs
+- Handling constant calls: "Did my payment go through?"
+- Tracking payments with no system
+- Complete operational chaos.
 
 ## 💡 The Realization
 This isn't a printing problem. This is a system design problem.
