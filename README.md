@@ -9,8 +9,8 @@ Nesprnt is a production-grade workflow automation system built to replace a chao
 students during exam cycles.
 
 What started as a small coordination task quickly evolved into a high-volume operational problem ,
- Instead of optimizing the manual process, 
- I eliminated it through system design and automation.
+- Instead of optimizing the manual process, 
+- Eliminated it through system design and automation.
 
 ---
 
@@ -20,9 +20,9 @@ Every semester during exams, I faced the same situation
  sit there for nearly 60 minutes, manage multiple PDFs, calculate pages manually, and coordinate everything in real time.
 
 ## 🔁 The Journey
-At first, it was manageable. Later 
-2nd time : Load exploded — more PDFs, more payments, more time taken
-3rd time : Started avoiding requests due to overload
+- At first, it was manageable. Later 
+- 2nd time : Load exploded — more PDFs, more payments, more time taken
+- 3rd time : Started avoiding requests due to overload
 
 ## 🟡 The Real Chaos
 What looked like "just one printout" per person quickly turned into a overwhelming mess I couldn't handle alone.
@@ -39,10 +39,10 @@ This isn't a printing problem. This is a system design problem.
 "What if I build a System to make this disappear entirely?"
 
 ## 🚀 So I built Workflow Automation System 
-That eliminates manual coordination entirely — transforming 
-it into a structured, automated workflow.
+- hat eliminates manual coordination entirely — transforming 
+- it into a structured, automated workflow.
 
-Key Insight
+## Key Insight
 
 This was not a printing problem — it was a workflow orchestration problem.
 
