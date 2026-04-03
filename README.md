@@ -1,3 +1,12 @@
+## ⚠️ Notice
+
+This repository is a case study and portfolio project.
+
+It is intentionally shared without full implementation details.
+The purpose is to demonstrate system design, architecture, and real-world problem-solving.
+
+Recreating or deploying this system without permission is strictly prohibited.
+
 <div align="center">
 
 <img src="https://img.shields.io/badge/Live-nesprnt.in-e8410a?style=for-the-badge&logo=google-chrome&logoColor=white" />
