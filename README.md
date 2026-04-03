@@ -127,7 +127,7 @@ Every semester what started as helping friends with printouts evolved into a ful
 
 Students log in with their college email, upload PDFs, configure per-document print settings, pay via UPI, and get a tracked Order ID — all in under 2 minutes. The admin verifies payments, sends print instructions to the shop via WhatsApp with one tap, and students are notified by SMS when their order is ready.
 
-> Built solo. Deployed to production. Used by real people every day.
+> Built solo. Deployed to production. Used by real people 
 
 ---
 
