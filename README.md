@@ -1,9 +1,9 @@
 ## ⚠️ Notice
 
-This repository is a case study and portfolio project.
+- This repository is a case study and portfolio project.
 
-It is intentionally shared without full implementation details.
-The purpose is to demonstrate system design, architecture, and real-world problem-solving.
+- It is intentionally shared without full implementation details.
+- The purpose is to demonstrate system design, architecture, and real-world problem-solving.
 
 Recreating or deploying this system without permission is strictly prohibited.
 
