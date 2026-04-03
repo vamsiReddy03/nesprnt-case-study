@@ -17,7 +17,7 @@
 ```
 
 ### **The Official Student Print Mediator**
-*A production-grade, full-stack print order management platform serving 136 students at Amrita Vishwa Vidyapeetham*
+*A production-grade, full-stack automation workflow system serving 136 students *
 
 <br/>
 
