@@ -567,7 +567,7 @@ B.Tech CSE — Amrita Vishwa Vidyapeetham, Amritapuri
 Built, designed, deployed, and maintained solo. Every line of code, every security decision, every UX detail — one person.
 
 [![Instagram](https://img.shields.io/badge/@nesprnt__-E4405F?style=flat&logo=instagram&logoColor=white)](https://www.instagram.com/nesprnt_)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/g-vamsi-ab87113ba)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat&logo=linkedin&logoColor=white)](https://in.linkedin.com/in/vamsi-reddy-b336432b9)
 [![Website](https://img.shields.io/badge/nesprnt.in-e8410a?style=flat&logo=google-chrome&logoColor=white)](https://nesprnt.in)
 
 ---
