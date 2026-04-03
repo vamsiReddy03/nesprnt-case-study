@@ -1,398 +1,494 @@
-## 🖨️ Nesprnt — Workflow Automation System built from a real recurring problem I personally experienced over multiple semesters Case Study
+<div align="center">
 
-> In an era dominated by AI agents and LLMs ,I chose to solve a small real-world problem that grew bigger than I expected." — one I lived through for multiple       semesters and I decided to solve it myself. The solution I built ended up having a bigger impact than I initially imagined."
-  this project focuses on solving a real-world **last-mile problem**
+<img src="https://img.shields.io/badge/Live-nesprnt.in-e8410a?style=for-the-badge&logo=google-chrome&logoColor=white" />
+<img src="https://img.shields.io/badge/Status-Production-0a8a4a?style=for-the-badge" />
+<img src="https://img.shields.io/badge/Users-136%20Students-1a52e8?style=for-the-badge" />
+<img src="https://img.shields.io/badge/Backend-Supabase%20Edge%20Functions-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white" />
 
-## 🚀 Overview
+<br/><br/>
 
-Nesprnt is a production-grade workflow automation system built to replace a chaotic, manual print coordination process used by multiple 
-students during exam cycles.
+```
+███╗   ██╗███████╗███████╗██████╗ ██████╗ ███╗   ██╗████████╗
+████╗  ██║██╔════╝██╔════╝██╔══██╗██╔══██╗████╗  ██║╚══██╔══╝
+██╔██╗ ██║█████╗  ███████╗██████╔╝██████╔╝██╔██╗ ██║   ██║   
+██║╚██╗██║██╔══╝  ╚════██║██╔═══╝ ██╔══██╗██║╚██╗██║   ██║   
+██║ ╚████║███████╗███████║██║     ██║  ██║██║ ╚████║   ██║   
+╚═╝  ╚═══╝╚══════╝╚══════╝╚═╝     ╚═╝  ╚═╝╚═╝  ╚═══╝   ╚═╝   
+```
 
-What started as a small coordination task quickly evolved into a high-volume operational problem ,
-- Instead of optimizing the manual process, 
-- Eliminated it through system design and automation.
+### **The Official Student Print Mediator**
+*A production-grade, full-stack print order management platform serving 136 students at Amrita Vishwa Vidyapeetham*
 
----
+<br/>
 
-## The Problem
-Every semester during exams, I faced the same situation — 10–20 classmates sending PDFs on WhatsApp, asking me to handle their printouts.
-As a day scholar, I had to go to a nearby print shop, sit there for nearly 60 minutes, manage multiple PDFs, calculate pages manually, 
-and coordinate everything in real time.
+[🌐 Live App](https://nesprnt.in) · [✨ Features](#-features) · [🏗️ Architecture](#️-architecture) · [🔒 Security](#-security-design) · [🚀 Tech Stack](#-tech-stack)
 
-## 🔁 The Journey
-- At first, it was manageable. Later 
-- 2nd time : Load exploded — more PDFs, more payments, more time taken
-- 3rd time : Started avoiding requests due to overload
-
-## 🟡 The Real Chaos
-What looked like "just one printout" per person quickly turned into a overwhelming mess I couldn't handle alone.
-- Managing multiple PDFs simultaneously
-- Manually counting pages and calculating costs
-- Handling constant calls: "Did my payment go through?"
-- Tracking payments with no system
-- Complete operational chaos.
-
-## 💡 The Realization
-This isn't a printing problem. This is a system design problem.
-
-4th time: Same chaos heading my way again. I asked:
-"What if I build a System to make this disappear entirely?"
-
-## 🚀 So I built Workflow Automation System 
-- That eliminates manual coordination entirely — transforming 
-- it into a structured, automated workflow.
-
-## Key Insight
-
-This was not a printing problem — it was a workflow orchestration problem.
-
-The issue was not the task itself, but the lack of a structured system to handle:
-
-Multi-user input
-State transitions
-Payment confirmation
-Order tracking
-Admin-side execution
-
-## 🚀 The Solution — Nesprnt
-
-A complete workflow automation system:
-
-**Upload → Customize → Pay → Track → Collect**
+</div>
 
 ---
 
-## ⚙️ System Architecture
+## 📌 What is Nesprnt?
 
-- The system was designed as a state-driven workflow engine, not just a UI application.
+Before Nesprnt, students physically walked to the print shop, handed over a USB drive or WhatsApp'd PDFs, paid cash with no receipt, and had no way to track their order. Disputes about payment and print status were common.
 
-- Core Components:
-- Frontend: Mobile-first interface for structured user input
-- Backend: Supabase (PostgreSQL) for state and data management
-- Storage: Secure PDF handling with signed URLs
-- Workflow Engine: Order lifecycle management
-- Automation Layer: Payment confirmation and notifications
-- Order Lifecycle: Pending → Verified → Printed → Completed
+**Nesprnt eliminates all of that.**
 
-## 🔄 What Changed
+Students log in with their college email, upload PDFs, configure per-document print settings, pay via UPI, and get a tracked Order ID — all in under 2 minutes. The admin verifies payments, sends print instructions to the shop via WhatsApp with one tap, and students are notified by SMS when their order is ready.
 
-| Old System               | New System              |
-|--------------------------|-------------------------|
-| WhatsApp PDF chaos       | Organized upload system |
-| Manual page counting     | Auto page detection |
-| Manual price calculation | Auto pricing engine |
-| Constant calls           | Real-time tracking |
-| Payment confusion        | UPI confirmation |
-| No order records         | Full order history |
-| Follow-ups               | SMS notifications |
-| Wrong PDFs               | Thumbnail preview |
-| Binding confusion        | Per-PDF customization |
-| Admin overload           | Bulk automation |
+> Built solo. Deployed to production. Used by real people every day.
 
 ---
 
-  ## Impact
- - Reduced execution time from ~60 minutes → ~5 minutes
- - Eliminated manual coordination and follow-ups
- - Converted a chaotic workflow into a repeatable system
- - Used by real users in live scenarios
- - Reduced human dependency through automation
+## 🏗️ Architecture
 
-## Features (90+) Workflow Automation 
+```
+┌─────────────────────────────────────────────────────────┐
+│                    Student Browser                       │
+│  Single HTML file — zero frameworks, zero build step    │
+│  PDF.js (client-side PDF processing & thumbnails)       │
+└──────────────────────┬──────────────────────────────────┘
+                       │  HTTPS POST  (JSON)
+                       │  x-api-secret header (every req)
+                       │  Authorization: Bearer JWT (admin only)
+                       ▼
+┌─────────────────────────────────────────────────────────┐
+│           Supabase Edge Function  (Deno / TypeScript)    │
+│                   printdesk-api                          │
+│                                                          │
+│  • API secret validation  (all requests)                │
+│  • HMAC-SHA256 JWT verification  (admin requests)       │
+│  • Business logic + rate limiting                       │
+│  • Student ownership verification                       │
+│                                                          │
+│  All secrets live HERE only — never in the browser      │
+└──────────┬──────────────────────────┬───────────────────┘
+           │                          │
+           ▼                          ▼
+┌──────────────────┐      ┌─────────────────────────────┐
+│  PostgreSQL DB   │      │     Supabase Storage         │
+│                  │      │   (private PDF bucket)       │
+│  orders          │      │                              │
+│  students        │      │  orders/{id}/file.pdf        │
+│  settings        │      │  signed URLs, 1hr expiry     │
+│  feedbacks       │      │                              │
+└──────────────────┘      └─────────────────────────────┘
+```
 
-**🔑 Student Login & Access Control**
+### Why a single HTML file?
 
-- College email login page before website access
-- Amrita email format validation 
-- Roll number extracted from email → verified against Supabase `students` table
-- Login saved permanently on device via localStorage
-- Outsiders with any other email → completely blocked
-- Mobile keyboard auto-suggests email (`type="email"`, `autocomplete="email"`)
-- Enter key triggers login directly
-- Terms line — "By using Nesprnt, you agree to pay the fixed rate"
-- RLS policy — student list never exposed to browser
-- Returns only `ok: true/false` — never actual student data
-
----
-
-**📄 PDF Management**
-
-- Upload up to 5 PDFs (max 30MB)
-- Auto page detection via PDF.js
-- Thumbnail preview per PDF
-- Duplicate PDF detection
-- Corrupted PDF blocking
-- Password-protected PDF blocking
-- Per-PDF customization (sides + binding)
-- PDF count badge display
-- Remove individual PDF button
-- Page alert when no PDFs uploaded
-
----
-
-**⚙️ Print Customization**
-
-- All single sided , All double sided
-- 1st single, rest double
-- Pins binding (free)
-- Spiral binding (+₹25)
-- Live sheet calculation per PDF
-- Per-PDF sides and binding description update
+136 students. One department. A React app would have a build pipeline, `node_modules`, deployment configs, and 200KB of JavaScript runtime for a problem that needs none of that. One HTML file loads faster, deploys in seconds, has zero dependencies to break, and is something I can maintain completely solo. **Complexity should match the problem.**
 
 ---
 
-**💰 Pricing Engine**
+## 🔒 Security Design
 
-- B&W ₹1.50/sheet
-- Colour ₹8.00/sheet
-- Per-PDF price breakdown
-- Spiral binding auto charge
-- Live total update
-- Live sheet count update
-- Price summary display with breakdown
+Security was not an afterthought. Every decision has a reason.
 
----
+### No Supabase SDK in the browser
+The Supabase JS client requires exposing a `service_role` or `anon` key in the frontend. Anyone with DevTools can steal it and query your entire database directly. The solution: **remove the SDK from the browser entirely.** Every database call goes through a Supabase Edge Function that holds all credentials as environment variables — invisible to any user.
 
-**📱 Payment Flow**
+### Two-layer API security
 
-- UPI phone number display
-- UPI copy button with confirmation
-- "I Have Paid" confirmation button
-- Payer name field
-- Payer phone number field
-- Order ID auto generation (`PD` + timestamp)
-- Progressive step reveal (Step 1 → 2 → 3 → 4)
-- Payment pulse animation
-- Step progress bar sync
+| Layer | Mechanism | Protects against |
+|---|---|---|
+| **Layer 1** | `x-api-secret` header on every request | Random internet requests to the Edge Function |
+| **Layer 2** | HMAC-SHA256 signed JWT (admin actions only) | Unauthorized access to admin operations |
 
----
+### JWT implementation
+Admin JWT is signed server-side using the **Web Crypto API** (native to Deno) with HMAC-SHA256. It's stored **in JavaScript memory only** — not localStorage, not cookies, not sessionStorage. Refresh the page and it's gone. Expires in 2 hours. Even if someone opens DevTools during an admin session, they cannot persist the token.
 
-**🔍 Order Tracking**
+### Student identity verification
+- Email regex enforces college email format before any server call
+- Roll number extracted from email and verified against the `students` table
+- Name fuzzy-matched against the registered name to prevent impersonation
+- Every `studentDeleteOrder` call verifies server-side that the order belongs to that student AND is in `cancelled` status — students cannot delete active orders or other students' data
 
-- Real-time status fetch from Supabase
-- Timeline view (Pending → Verified → Printed)
-- Student ID verification before showing order
-- Order not found error handling
-- Student ID mismatch error handling
-- Verified at timestamp display
-- Printed at timestamp display
+### Brute force protection
+5 failed admin login attempts → 30-second client-side lockout. Server-side, a forged JWT without the correct `JWT_SECRET` is cryptographically invalid regardless of how many attempts are made.
+
+### XSS prevention
+Two sanitization layers: `esc()` for anything rendered into `innerHTML`, `sanitize()` for user inputs sent to the backend. Every user-supplied string is treated as untrusted.
 
 ---
 
-**📦 My Orders**
+## ✨ Features
 
-- Live status fetch from Supabase on open
-- Per-PDF details per order
-- Cancel order before verification
-- Confirm dialog before cancel
-- Delete cancelled orders from list
-- Refund request via WhatsApp to admin
-- Deleted/completed orders show "✅ Order Completed — Ready to Collect"
-- Orders saved on device (up to 20)
-- Shows order count on device
+<details>
+<summary><strong>🔐 Authentication (5 features)</strong></summary>
 
----
+- College email-only login with strict regex validation
+- Auto roll number extraction from email (no manual entry)
+- Database-backed verification against the students table
+- Persistent session via localStorage — no repeated logins
+- Full-screen gate that cannot be bypassed
 
-**🔐 Admin Panel Access**
+</details>
 
-- Email + password login form
-- Brute force lock — 30 sec after 5 wrong attempts
-- Lockout countdown message
-- Logout button
-- Admin nav button hidden from students
+<details>
+<summary><strong>📝 Order Form — Progressive UX (5 features)</strong></summary>
 
----
+- Step-by-step field unlocking: name → section → student ID → PDFs → payment
+- Server-verified name matching (fuzzy word-level check)
+- Student ID regex validation with helpful format hint
+- 4-step visual progress bar with live active/done states
+- All validation errors surface inline with specific messages
 
-**📋 Admin Order Management**
+</details>
 
-- Load all orders from Supabase
-- 5 status filters (All, Pending, Verified, Printed, Cancelled)
-- Order details modal (name, section, student ID, pages, amount, PDF files)
-- Per-PDF print instructions in detail view
-- Payment details box (phone, name, amount)
-- Verify order button
-- WhatsApp dispatch per order
-- Bulk WhatsApp dispatch (all verified orders + grand total)
-- Mark as printed button
-- SMS notify → turns green "✅ SMS Sent" after clicking
-- UPI number masked (`****12345`) in order list
-- Refund done button
-- Cancelled orders tab
-- Delete order (with PDF file cleanup from storage)
-- Stats dashboard (total, pending, verified, printed, cancelled, revenue)
-- Refresh button
+<details>
+<summary><strong>📄 PDF Processing — Client-Side (12 features)</strong></summary>
 
----
+- Up to 5 PDFs, 30MB each, PDF-only enforced
+- Drag & drop + click-to-upload on the same zone
+- Duplicate filename detection
+- Live page count extraction via PDF.js (in-browser, no upload needed)
+- Page cap at 80 pages per PDF
+- First-page thumbnail preview rendered from PDF canvas
+- Password-protected PDF detection with specific error message
+- Corrupted/invalid PDF detection
+- Per-PDF scanning status indicator (Scanning → Ready / Error)
+- Individual file removal without clearing others
+- PDF count badge (2 / 5)
+- All error PDFs blocked from submission with named list
 
-**📲 SMS & WhatsApp**
+</details>
 
-- SMS Manual notify to student when order ready
-- WhatsApp message per order with full details
-- Bulk WhatsApp with all verified orders + grand total + B&W/colour/spiral counts
-- Refund SMS notification Manual to student
-- Cancel request via WhatsApp to admin
+<details>
+<summary><strong>🖨️ Print Customisation (5 features)</strong></summary>
 
----
+- Per-PDF print sides: all single / all double / first-single rest-double
+- Per-PDF binding: pins (free) or spiral (+₹25)
+- Print Details card locked until ALL PDFs are individually customised
+- Live sheet count formula per PDF based on sides selection
+- Plain-language description: "10 pages → 5 sheets (all double-sided)"
 
-**⏰ Time Control**
+</details>
 
-- Open/close timing set by admin
-- Supabase synced — works across all devices
-- Override button — force open/close outside hours
-- Closed banner shown to students when closed
-- Cutoff loaded on page load from backend
-- Cutoff saved to localStorage for offline check
+<details>
+<summary><strong>💰 Pricing & Payment (9 features)</strong></summary>
 
----
+- B&W (₹1.50/sheet) or Colour (₹8.00/sheet) — applies to all PDFs
+- Live total recalculates on every change
+- Per-PDF cost breakdown table for multi-file orders
+- Spiral binding line item with count
+- UPI number display with one-tap copy
+- Page Visibility API — detects when student returns from payment app and pulses the "I Paid" button
+- Pre-generated Order ID displayed before submission
+- Payment proof entry (phone + UPI name for admin matching)
+- Client + server-side rate limit: max 3 orders per student per day
 
-**💬 Feedback System**
+</details>
 
-- Star rating (1-5)
-- Category selection
-- Feedback message text area
-- Submit feedback to Supabase
-- Admin feedback management panel
-- Unread feedback badge on admin nav
-- Filter by all/unread/5-star/low rating
-- Mark individual feedback as read
+<details>
+<summary><strong>📤 Submission & Upload (5 features)</strong></summary>
+
+- Base64 PDF upload via Edge Function (never touches storage directly from browser)
+- Per-file retry logic: 3 attempts with 1.5s delay, shows "retry 2/3" in UI
+- Live upload progress: "Uploading 2 of 3...", "Saving order..."
+- Atomic order creation: all PDFs uploaded before order row inserted
+- If any upload fails, order is never created (no orphaned partial records)
+
+</details>
+
+<details>
+<summary><strong>🔍 Order Tracking (6 features)</strong></summary>
+
+- Public tracking by Order ID + Student ID (prevents tracking others' orders)
+- Auto-uppercase input as student types
+- Enter key triggers search from either field
+- Full order details card
+- 4-stage visual timeline with done/active/waiting states
+- Timestamps shown on completed steps (verified at, printed at)
+
+</details>
+
+<details>
+<summary><strong>📦 My Orders — Cross-Device (5 features)</strong></summary>
+
+- Orders fetched from DB by roll number — works on any device (like Amazon/Flipkart)
+- Full order cards with per-PDF details
+- Cancel pending orders (sends WhatsApp refund request to admin)
+- Delete cancelled orders (server-verified ownership + status before deletion)
+- Loading state with empty state messaging
+
+</details>
+
+<details>
+<summary><strong>🔐 Admin Dashboard (17 features)</strong></summary>
+
+- Hidden access: `A+D+M` keys (desktop) or 5 logo taps (mobile)
+- Email + password login, credentials verified server-side
+- 5-attempt brute force lockout (30 seconds)
+- JWT session: memory-only, 2-hour expiry, auto-logout on expiry
+- Stats tiles: Total / Pending / Verified / Revenue
+- Filter tabs: All / Pending / Verified / Printed / Cancelled (with badge counts)
+- Order detail modal with full info + payment matching box
+- Verify order: confirmation modal → WhatsApp opens + PDFs auto-download
+- WhatsApp message auto-generated with all print instructions
+- PDFs downloaded with 400ms stagger (prevent browser blocking)
+- Mark as Printed
+- SMS to student on ready
+- Bulk WhatsApp: all verified orders in one formatted message
+- Refund Done: marks DB, disables button, SMS to student
+- Delete order: removes DB row + Storage files
+- Manual refresh
+- Logout clears JWT from memory
+
+</details>
+
+<details>
+<summary><strong>⏰ Order Cutoff System (6 features)</strong></summary>
+
+- Admin sets daily open/close times, saved to DB and synced to all devices
+- Live status chip in hero: green "open till X" or red "closed, opens X"
+- Form auto-hides when closed; closed banner shows next opening time
+- Force-open override button (bypasses schedule instantly)
+- Cutoff re-checked every 60 seconds (form closes automatically)
+- Remote cutoff fetched on every page load
+
+</details>
+
+<details>
+<summary><strong>💬 Feedback System (10 features)</strong></summary>
+
+- Post-order feedback form (shown on success screen)
+- 5-star rating with interactive highlight
+- 6 feedback categories
+- Free-text message
+- Saved to `feedbacks` table via Edge Function
+- Admin panel: stats (total, avg rating, unread count)
+- Filter tabs: All / Unread / 5-star / Low rating
+- Mark individual as read
 - Mark all as read
-- Delete feedback
-- Total feedback count display
-- Average rating display
+- Delete individual feedback
+
+</details>
+
+<details>
+<summary><strong>📱 PWA & Performance (16 features)</strong></summary>
+
+- Installable PWA (manifest.json + service worker)
+- Theme color in mobile browser chrome
+- Critical CSS inlined in `<head>` (login screen has zero FCP delay)
+- Non-blocking font loading (media="print" trick)
+- `defer` on PDF.js and QRCode.js
+- DNS preconnect for Supabase, Google Fonts, GA4
+- Web Vitals (CLS, INP, FCP, LCP, TTFB) → GA4
+- Google Analytics 4 with async loading
+- SEO: title, description, Open Graph, robots, author, Google verification
+- Schema.org JSON-LD structured data (SoftwareApplication)
+- Sticky topbar with frosted glass backdrop-filter
+- Custom 4px scrollbar
+- Smooth scroll
+- XSS protection: `esc()` + `sanitize()` on all user inputs
+- Zero secrets in frontend — all in Edge Function env vars
+- Responsive mobile-first design
+
+</details>
 
 ---
 
-**🔒 Security**
+## 🚀 Tech Stack
 
-- College email login — outsiders blocked
-- Backend rate limiting — max 3 orders/day (server-side, not bypassable)
-- SHA-256 password hashing
-- Salt encryption
-- XSS sanitization on all inputs (name, section, student ID, phone, payer name)
-- Brute force lock — 30 sec cooldown after 5 wrong admin attempts
-- RLS policies on all 4 database tables
-- CSP headers
-- HTTPS only
-- Signed PDF URLs expire in 1 hour
-- All secrets in Supabase environment — never in browser
-- Student data returns only `ok: true/false` — never actual list
-- SQL injection safe — regex validation + parameterized queries + string comparison for admin
-- No duplicate IDs in HTML
+| Category | Technology | Why |
+|---|---|---|
+| **Frontend** | Vanilla HTML/CSS/JS | Zero build step, instant deploy, fastest load for the use case |
+| **Backend** | Supabase Edge Functions (Deno) | Serverless, runs at edge, TypeScript, free tier |
+| **Database** | Supabase PostgreSQL | Relational queries, real-time capable, free tier |
+| **Storage** | Supabase Storage | S3-compatible, private buckets, signed URL generation |
+| **PDF Processing** | PDF.js 3.11 | Client-side page counting + thumbnail rendering — no server load |
+| **Auth** | Custom HMAC-SHA256 JWT | Signed server-side with Web Crypto API, no third-party auth dependency |
+| **Analytics** | Google Analytics 4 | Web Vitals + user flow tracking |
+| **Fonts** | Syne + DM Sans (Google Fonts) | Non-blocking load, distinctive typographic pairing |
+| **Hosting** | Static (nesprnt.in) | Single HTML file, trivially deployable anywhere |
 
 ---
 
-**🌐 SEO & Google**
+## 🗄️ Database Schema
 
-- Title → `Nesprnt | The Official Student Print Mediator`
--'Nesprnt' is totally a Ghost Name
-- Meta description
-- Open Graph tags (`og:title`, `og:description`, `og:url`, `og:type`)
-- Software Application Schema markup with aggregate rating
-- Google site verification meta tag ✅
-- Google Search Console verified ✅
-- Sitemap submitted ✅
-- `robots` meta tag — index + follow
-- `author` meta tag
+```sql
+-- Pre-seeded with 136 registered students
+students (
+  roll_number  TEXT PRIMARY KEY,   -- AV.SC.U4CSE2XXXX
+  name         TEXT NOT NULL
+)
 
----
+-- Every print order
+orders (
+  order_id     TEXT PRIMARY KEY,   -- PD7T0XS (generated client-side)
+  name         TEXT,
+  section      TEXT,               -- CSE-A / CSE-B
+  student_id   TEXT,               -- matches students.roll_number
+  pages        INTEGER,
+  print_type   TEXT,               -- 'bw' | 'color'
+  total        NUMERIC,
+  pdf_names    TEXT,               -- comma-separated filenames
+  pdf_paths    TEXT[],             -- storage paths array
+  pdf_count    INTEGER,
+  pdf_sides    TEXT,               -- per-PDF sides, comma-separated
+  binding      TEXT,               -- per-PDF binding, comma-separated
+  pay_phone    TEXT,               -- UPI phone for payment matching
+  pay_name     TEXT,               -- UPI name for payment matching
+  status       TEXT,               -- pending|verified|printed|cancelled
+  refunded     BOOLEAN,
+  created_at   TIMESTAMPTZ,
+  verified_at  TIMESTAMPTZ,
+  printed_at   TIMESTAMPTZ,
+  refunded_at  TIMESTAMPTZ
+)
 
-**🔗 Brand & Identity**
+-- Order open/close schedule
+settings (
+  key    TEXT PRIMARY KEY,         -- 'cutoff'
+  value  TEXT                      -- JSON: {open, close, override}
+)
 
-- Instagram icon in footer → `nesprnt_`
-- LinkedIn icon in footer → your profile
-- Hover effects on social icons (orange for Instagram, blue for LinkedIn)
-- PWA meta tags (theme color `#e8410a`, Apple web app capable)
-- `manifest.json` with Nr logo
-- `icon-192.png` + `icon-512.png` — Nr brand icons
-- Footer copyright with auto-updating year
-- Copyright Act 1957 notice
-
----
-
-**⚙️ Edge Function (16 Actions)**
-
----
-
-**🚀 Deployment & Infrastructure**
-
-- Vercel hosting
-- Custom `nesprnt.in` + `www.nesprnt.in` domain
-- GitHub → Vercel auto-deploy pipeline
-- Supabase Edge Function (Deno/TypeScript)
-- DNS fixed on GoDaddy
-- ₹0 hosting cost
-
----
-
-**📊 Final Stats**
-
-- ⚡ 100+ features
-- 🔒 15+ security layers
-- 🗄️ 4 database tables with RLS
-- ⚙️ 16 Edge Function actions
-- 🧪 Live tested with real classmates
-- 🐛 Continuously bug fixed
-- 💰 ₹0 hosting cost
-- 📱 100% mobile responsive
-- 🌐 Live on Google — nesprnt.in 🎉
-
-## 🛠️ Tech Stack
-
-| Layer         | Technology            |
-|---------------|-----------------------|
-| Frontend      | HTML, CSS, JavaScript |
-| Backend       | Supabase (PostgreSQL) |
-| Storage       | Supabase Storage      |
-| PDF Processing| PDF.js                |
-| Hosting       | Vercel                |
-| Security      | RLS, XSS, CSP         |
+-- Student feedback
+feedbacks (
+  id           TEXT PRIMARY KEY,
+  order_id     TEXT,
+  rating       INTEGER,            -- 1-5
+  category     TEXT,
+  message      TEXT,
+  submitted_at TIMESTAMPTZ
+)
+```
 
 ---
 
-Future Enhancements
-- Payment automation (PhonePe Collect flow)
-- Fast2SMS & push notifications
-- Backend migration (Node.js,Express backend + JWT)
-- AI-based automation (n8n workflow)
-- Mobile app (React Native)
-- multi colleges (SaaS Model)
+## 🔄 Complete Order Lifecycle
+
+```
+Student logs in (college email → roll number → DB verify)
+        │
+        ▼
+Fills Info (name verify → section → student ID)
+        │
+        ▼
+Uploads PDFs (client-side scan: pages, thumbnail, validation)
+        │
+        ▼
+Customises each PDF (sides + binding, price updates live)
+        │
+        ▼
+Pays via UPI → enters phone + name as proof
+        │
+        ▼
+Submits → PDFs uploaded to Storage → order row inserted (status: pending)
+        │
+        ▼
+Admin sees order → verifies payment against UPI records
+        │
+        ▼
+Admin clicks Verify → WhatsApp opens + PDFs auto-downloaded (status: verified)
+        │
+        ▼
+Admin forwards to print shop via WhatsApp
+        │
+        ▼
+Admin marks Printed → SMS sent to student (status: printed)
+        │
+        ▼
+Student collects printout ✅
+```
 
 ---
 
-## 🧠  Key Takeaway
+## 📊 Key Technical Decisions & Trade-offs
 
-> Operational chaos is often a sign of missing system design.
-  his project demonstrates how identifying workflow inefficiencies and applying system design principles
-  can convert manual operations into scalable, automated systems.
+### Decision 1: No Supabase SDK in browser
+**Problem:** Exposing Supabase keys in frontend JS is a critical security risk — anyone can steal them from DevTools and get full database access.
 
----
+**Solution:** Removed the SDK entirely from the browser. Created a single Edge Function (`printdesk-api`) that proxies all database operations. The frontend never touches Supabase directly.
 
-## 🙏 Acknowledgement
-
-This product was shaped by real users — my classmates.
-
-Every message, call, and request helped define the system.
+**Trade-off:** Every database call has one extra network hop through the Edge Function. Acceptable because Edge Functions run at Supabase's edge servers (geographically close) and the added latency is ~10-20ms.
 
 ---
 
-## 📌 Note
+### Decision 2: Client-side PDF processing
+**Problem:** If PDFs were uploaded first for page counting, students would wait through an upload just to see a price estimate. That's bad UX and wastes bandwidth.
 
-This system is currently restricted to authorized users.  
+**Solution:** PDF.js runs entirely in the browser — page counting, validation, thumbnail generation — before any network request is made. Students see instant page counts and price estimates.
 
-External users cannot log in.
+**Trade-off:** PDF.js is a ~400KB script. Mitigated by loading it with `defer` and only using it after the student has already interacted with the form (not a cold-load cost).
+
+---
+
+### Decision 3: Memory-only admin JWT
+**Problem:** Storing admin JWT in localStorage means if the device is shared or a browser extension reads localStorage, the admin session is compromised indefinitely.
+
+**Solution:** JWT stored only in a JavaScript variable (`let _adminJWT`). It disappears on page refresh, tab close, or after 2 hours. Zero persistence.
+
+**Trade-off:** Admin has to log in again after every page refresh. Acceptable for a security-sensitive admin panel.
 
 ---
 
-## 💬 Final Thought
+### Decision 4: Per-student server-side delete verification
+**Problem:** A student could theoretically call `deleteOrder` with any order ID if there was no ownership check.
 
-Your real-life frustration can become your best project idea.
-
-I started with 15 printouts.  
-I ended up building a production system.
-I didn’t build a print app.
-I built a system that removes the need for coordination.
+**Solution:** `studentDeleteOrder` runs three checks server-side: does the order exist, does the `student_id` match the requester, and is the status `cancelled`? All three must pass. The frontend check is just UX — the backend is the actual gate.
 
 ---
+
+## 📁 Project Structure
+
+```
+nesprnt/
+├── index.html                  # Entire frontend — one file
+│   ├── <head>                  # Critical CSS, PWA meta, GA4, fonts
+│   ├── Login overlay           # Email-based auth gate
+│   ├── Student page (#pgS)     # Order form + success screen
+│   ├── Track page (#pgT)       # Order status + timeline
+│   ├── My Orders page (#pgMO)  # Cross-device order history
+│   ├── Admin page (#pgA)       # Dashboard + feedback panel
+│   ├── Modals                  # Detail / Confirm / Delete
+│   ├── Bottom nav              # Print / Track / Admin
+│   └── <script>                # All application logic (~1800 lines)
+│
+├── index.ts                    # Supabase Edge Function (TypeScript)
+│   ├── JWT helpers             # signJWT / verifyJWT (Web Crypto API)
+│   ├── API secret check        # All requests
+│   ├── JWT check               # Admin-only actions
+│   └── 18 action handlers      # All business logic
+│
+├── manifest.json               # PWA manifest
+└── sw.js                       # Service worker
+```
+
+---
+
+## 🌐 Live Metrics
+
+- **136 registered students** across CSE-A and CSE-B sections
+- **Single Edge Function** handles all 18 API actions
+- **Zero server costs** — fully on Supabase free tier
+- **Sub-2-minute** average order placement time
+- **100% UPI-based** — no cash, full digital payment trail
+
+---
+
+## 👤 Built By
+
+**G Vamsi Reddy**
+B.Tech CSE — Amrita Vishwa Vidyapeetham, Amaravathi 
+
+Built, designed, deployed, and maintained solo. Every line of code, every security decision, every UX detail — one person.
+
+[![Instagram](https://img.shields.io/badge/@nesprnt__-E4405F?style=flat&logo=instagram&logoColor=white)](https://www.instagram.com/nesprnt_)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/g-vamsi-ab87113ba)
+[![Website](https://img.shields.io/badge/nesprnt.in-e8410a?style=flat&logo=google-chrome&logoColor=white)](https://nesprnt.in)
+
+---
+
+<div align="center">
+
+**If you're a recruiter reading this:**
+
+This project is not a tutorial follow-along. It is not a clone. It is a real product, solving a real problem, used by real people, built with deliberate technical decisions made by one person from scratch.
+
+*Every feature listed above is live and working at [nesprnt.in](https://nesprnt.in)*
+
+</div> 
 
 ## 📄 License
 
