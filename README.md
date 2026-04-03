@@ -562,7 +562,7 @@ nesprnt/
 ## 👤 Built By
 
 **G Vamsi Reddy**
-B.Tech CSE — Amrita Vishwa Vidyapeetham, Amritapuri
+B.Tech CSE — Amrita Vishwa Vidyapeetham, Amaravathi
 
 Built, designed, deployed, and maintained solo. System design , Features, every security decision, every UX detail — one person.
 
