@@ -564,7 +564,7 @@ nesprnt/
 **G Vamsi Reddy**
 B.Tech CSE — Amrita Vishwa Vidyapeetham, Amritapuri
 
-Built, designed, deployed, and maintained solo. Every line of code, every security decision, every UX detail — one person.
+Built, designed, deployed, and maintained solo. System design , Features, every security decision, every UX detail — one person.
 
 [![Instagram](https://img.shields.io/badge/@nesprnt__-E4405F?style=flat&logo=instagram&logoColor=white)](https://www.instagram.com/nesprnt_)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat&logo=linkedin&logoColor=white)](https://in.linkedin.com/in/vamsi-reddy-b336432b9)
