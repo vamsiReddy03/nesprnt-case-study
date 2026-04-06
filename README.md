@@ -568,6 +568,84 @@ nesprnt/
 
 ---
 
+## ⚡ Production-Grade Performance
+ 
+> *"A system is only as good as how it performs under real conditions."*
+ 
+After designing the architecture and shipping to production, the focus shifted to what truly defines a product: **performance, reliability, and observability.**
+ 
+---
+ 
+### Lighthouse Scores
+ 
+| Platform | Score | Notes |
+|---|---|---|
+| **Desktop** | 🟢 **100 / 100** | Perfect score — optimized critical rendering path |
+| **Mobile** | 🟢 **97 / 100** | LCP ~2.2s · TBT ~70ms for smooth interactions |
+ 
+---
+ 
+### Core Web Vitals
+ 
+| Metric | Value | What It Means |
+|---|---|---|
+| **LCP** — Largest Contentful Paint | ~2.2s | Main content visible in 2.2 seconds |
+| **CLS** — Cumulative Layout Shift | ~0.07 | Visually stable — no content jumping around |
+| **TBT** — Total Blocking Time | ~70ms | Smooth interactions, no janky UI |
+ 
+---
+ 
+### How These Numbers Were Achieved
+ 
+**Eliminated render-blocking resources**
+- Critical CSS inlined directly in `<head>` — login screen renders with zero network wait
+- Google Fonts loaded with `media="print"` trick — fonts never block the first paint
+- PDF.js and QRCode.js loaded with `defer` — main thread unblocked during page load
+- Result: ~2.1 seconds of render-blocking resources removed
+ 
+**Prioritized above-the-fold content**
+- The login overlay is the only above-the-fold element — its entire CSS is inlined
+- No layout shift because dimensions are fixed before fonts or images load
+- `dns-prefetch` and `preconnect` for Supabase, Google Fonts, and GA4 — connections start before they're needed
+ 
+**Deferred non-critical JavaScript**
+- All heavy scripts (PDF processing, QR generation) deferred until after interaction
+- Application logic loads after the user sees the interface, not before
+- No framework runtime overhead — zero KB of React/Vue/Angular to parse
+ 
+**Built as a PWA (offline-first reliability)**
+- `manifest.json` + service worker registered on load
+- Installable to home screen on Android and iOS
+- Theme color, mobile-web-app-capable meta tags for native-like experienced
+### Observability — GA4 + Web Vitals
+ 
+```javascript
+// Web Vitals sent to GA4 on every page load
+onCLS(sendToGA4);   // Layout stability
+onINP(sendToGA4);   // Interaction responsiveness  
+onFCP(sendToGA4);   // First content visible
+onLCP(sendToGA4);   // Main content visible
+onTTFB(sendToGA4);  // Server response time
+```
+ 
+- **Async GA4 loading** — analytics never block page render
+- **Real-time demand/supply insights** — admin sees usage patterns without performance impact
+- **CI/CD workflow** — consistent production deployments, no manual errors
+ 
+---
+ 
+### The Engineering Takeaway
+ 
+Building features is one step. Engineering for performance, reliability, and real-world usage is what makes a system truly production-ready.
+ 
+This wasn't about adding more features. It was about:
+- Delivering a fast, responsive experience on real devices and real networks
+- Building observable systems where issues surface through data, not user complaints
+- Ensuring the system stays reliable as the user base grows
+ 
+> **Key Learning:** I didn't start with deep expertise in performance engineering. By building and testing this system under real conditions — 136 students, mobile college WiFi, exam-time traffic spikes — I learned how to identify bottlenecks, measure impact, and iterate. This is what production-readiness actually feels like.
+  
+
 ## 👤 Built By
 
 **G Vamsi Reddy**
